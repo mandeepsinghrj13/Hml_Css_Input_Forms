@@ -29,7 +29,7 @@
         <div>
             <label for="email">Email input type: </label>
             <input type="email" name="email" id="email">
-            <error-output class="text-error" for="email"></error-output>
+            <error-output class="email-error" for="email"></error-output>
         </div>
 
         <div>
@@ -41,7 +41,7 @@
         <div>
             <label for="number">Number input type: </label>
             <input type="number" name="number" id="number">
-            <error-output class="text-error" for="number"></error-output>
+            <error-output class="number-error" for="number"></error-output>
         </div>
 
         <div>
@@ -96,6 +96,18 @@
             }
         });
 
+        //validating phone number using regexp.
+        const number = document.querySelector('#number')
+        const numberError = document.querySelector('.number-error')
+        number.addEventListener('input', function () {
+            let phoneNumberRegex = RegExp("^[0-9]{2}\\s{0,1}[0-9]{10}$")
+            if (phoneNumberRegex.test(number.value)) {
+                numberError.textContent = " "
+            }
+            else {
+                numberError.textContent = "Phone number is incorrect"
+            }
+        });
         const salary = document.querySelector('#salary')
         const output = document.querySelector('.salary-output')
         output.textContent = salary.value;
